@@ -58,11 +58,14 @@ DO NOT USE NODE.JS:
     * Python
 ### 2.6 Running Javascript Outside The Browser
 Using code folder ***1-node-farm***
-Using VSCode Terminal ctrl + backtick
-Open node by typing `node` 
-This opens the node *REPL* interface
-* R - Read
-* E - Eval
-* P - Print
-* L - Loop
+* Open VSCODE terminal: ctrl + backtick
+* Open node by typing `node` 
+    * This opens the node *REPL* interface
+        * R - Read
+        * E - Eval
+        * P - Print
+        * L - Loop
+* Close node by typing `.exit` or `ctrl+d`
+* Hitting `Tab` will list all global variables known to node
+* underscore variable `_` contains the previous result
 
