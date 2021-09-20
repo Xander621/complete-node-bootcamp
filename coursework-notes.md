@@ -12,6 +12,11 @@ sudo apt-get install -y nodejs
      echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
      sudo apt-get update && sudo apt-get install yarn
 
+# Important Links Used During This Course
+
+1. Use this [Markdown Guide](https://www.markdownguide.org/basic-syntax/) for creating this style guide
+2. The official [Node.js v14.x Documentation](https://nodejs.org/dist/latest-v14.x/docs/api/)
+
 # Complete Node Bootcamp Course Notes
 
 ## Section 1
@@ -59,13 +64,15 @@ DO NOT USE NODE.JS:
 ### 2.6 Running Javascript Outside The Browser
 Using code folder ***1-node-farm***
 * Open VSCODE terminal: ctrl + backtick
-* Open node by typing `node` 
-    * This opens the node *REPL* interface
-        * R - Read
-        * E - Eval
-        * P - Print
-        * L - Loop
+* Open node by typing `node`
+    * This opens the Read-Eval-Print-Loop ([REPL](https://nodejs.org/dist/latest-v14.x/docs/api/repl.html)) interface
 * Close node by typing `.exit` or `ctrl+d`
 * Hitting `Tab` will list all global variables known to node
 * underscore variable `_` contains the previous result
+### 2.7 Using Modules 1: Core Modules
+To use a node module store the result of the `require()` method into a local variable
+```node
+const fs = require('fs');
+```
 
+See [File System Documentation](https://nodejs.org/dist/latest-v14.x/docs/api/fs.html) for the above require statement
