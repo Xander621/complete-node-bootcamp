@@ -1,4 +1,6 @@
 const fs = require('fs');
+const http = require('http');
+const url = require('url');
 
 
 // Blocking, synchronous way
@@ -11,17 +13,48 @@ const fs = require('fs');
 // console.log('File written!');
 
 // Non-blocking, asynchronous (Callback hellish!)
-fs.readFile('./starter/txt/start.txt', 'utf-8', (err, data1) => {
-    if(err) return console.log('ERROR reading start.txt');
-    fs.readFile(`./starter/txt/${data1}.txt`, 'utf-8', (err, data2) => {
-        console.log(data2);
-        fs.readFile('./starter/txt/append.txt', 'utf-8', (err, data3) => {
-            console.log(data3);
+// fs.readFile('./starter/txt/start.txt', 'utf-8', (err, data1) => {
+//     if(err) return console.log('ERROR reading start.txt');
+//     fs.readFile(`./starter/txt/${data1}.txt`, 'utf-8', (err, data2) => {
+//         console.log(data2);
+//         fs.readFile('./starter/txt/append.txt', 'utf-8', (err, data3) => {
+//             console.log(data3);
 
-            fs.writeFile('./starter/txt/final.txt', `${data2}\n${data3}`, 'utf-8', err => {
-                console.log('Your file has been written.');
-            });
+//             fs.writeFile('./starter/txt/final.txt', `${data2}\n${data3}`, 'utf-8', err => {
+//                 console.log('Your file has been written.');
+//             });
+//         });
+//     });
+// });
+// console.log('Will read file!');
+
+/**
+ * Section 2.11 Creating a Simple Web Server
+ * 
+ */
+
+// Setup Server
+const server = http.createServer((req, resp) => {
+    //console.log(req);
+    //console.log(req.url);
+
+    const pathName = req.url;
+
+    if(pathName === '/' || pathName === '/overview') {
+        resp.end('This is the OVERVIEW');
+    } else if (pathName === '/product') {
+        resp.end('This is the PRODUCT');
+    } else {
+        resp.writeHead(404, {
+            'Content-type': 'text/html',
+            'my-own-header': 'hello-world'
         });
-    });
+        resp.end('<h1>Page not Found!</h1>');
+    }
+    //resp.end('Hello from the server!');
 });
-console.log('Will read file!');
+
+// Start Server
+server.listen(8000, '127.0.0.1', () => {
+    console.log('Listening to requests on port 8000');
+});
