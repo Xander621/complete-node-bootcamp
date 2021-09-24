@@ -32,11 +32,14 @@ const url = require('url');
  * Section 2.11 Creating a Simple Web Server
  * 
  */
+ 
+// Grab the JSON data from the file globally for this exercise.  We don't want 
+// to grab this data on each request.
+const data = fs.readFileSync(`${__dirname}/starter/dev-data/data.json`, 'utf-8');
+const dataObj = JSON.parse(data);
 
 // Setup Server
 const server = http.createServer((req, resp) => {
-    //console.log(req);
-    //console.log(req.url);
 
     const pathName = req.url;
 
@@ -44,14 +47,17 @@ const server = http.createServer((req, resp) => {
         resp.end('This is the OVERVIEW');
     } else if (pathName === '/product') {
         resp.end('This is the PRODUCT');
+    } else if (pathName === '/api') {
+         resp.writeHead(200, {'Content-type': 'application/json'});
+         resp.end(data);
     } else {
+        // When we redirect to an unknown
         resp.writeHead(404, {
             'Content-type': 'text/html',
             'my-own-header': 'hello-world'
         });
         resp.end('<h1>Page not Found!</h1>');
     }
-    //resp.end('Hello from the server!');
 });
 
 // Start Server
