@@ -130,7 +130,7 @@ Then follow the wizard to complete.
 ### 2.19 Types of Packages and Installs
 
 Install `slugify` as a **regular dependency** locally to the project
-```npm
+```
 npm install slugify
 ```
 
@@ -159,3 +159,6 @@ to include something like
     "start": "nodemon"
   },
 ```
+
+### 2.20
+Using [slugify](https://www.npmjs.com/package/slugify)

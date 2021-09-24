@@ -1,7 +1,12 @@
+// Core Node Modules
 const fs = require('fs');
 const http = require('http');
 const url = require('url');
 
+// 3rd Party Modules
+const slugify = require('slugify')
+
+// Custom Modules
 const replaceTemplate = require('./starter/modules/replaceTemplate');
 
 
@@ -42,9 +47,12 @@ const tempOverview = fs.readFileSync(`${__dirname}/starter/templates/template-ov
 const tempCard = fs.readFileSync(`${__dirname}/starter/templates/template-card.html`, 'utf-8');
 const tempProduct = fs.readFileSync(`${__dirname}/starter/templates/template-product.html`, 'utf-8');
 
-
 const data = fs.readFileSync(`${__dirname}/starter/dev-data/data.json`, 'utf-8');
 const dataObj = JSON.parse(data);
+
+// create an array of all the slugs
+const slugs = dataObj.map(el => slugify(el.productName, { lower: true }));
+//console.log(slugs);
 
 // Setup Server
 const server = http.createServer((req, resp) => {
