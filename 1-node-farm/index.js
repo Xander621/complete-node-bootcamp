@@ -35,6 +35,26 @@ const url = require('url');
  
 // Grab the JSON data from the file globally for this exercise.  We don't want 
 // to grab this data on each request.
+
+const replaceTemplate = (temp, product) => {
+    let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
+    output = output.replace(/{%IMAGE%}/g, product.image);
+    output = output.replace(/{%PRICE%}/g, product.price);
+    output = output.replace(/{%FROM%}/g, product.from);
+    output = output.replace(/{%NUTRIENTS%}/g, product.nutrients);
+    output = output.replace(/{%QUANTITY%}/g, product.quantity);
+    output = output.replace(/{%DESCRIPTION%}/g, product.description);
+    output = output.replace(/{%ID%}/g, product.id);
+
+    if(!product.organic) output = output.replace(/{%NOT_ORGANIC%}/g, 'not-organic');
+    return output;
+}
+
+const tempOverview = fs.readFileSync(`${__dirname}/starter/templates/template-overview.html`, 'utf-8');
+const tempCard = fs.readFileSync(`${__dirname}/starter/templates/template-card.html`, 'utf-8');
+const tempProduct = fs.readFileSync(`${__dirname}/starter/templates/template-product.html`, 'utf-8');
+
+
 const data = fs.readFileSync(`${__dirname}/starter/dev-data/data.json`, 'utf-8');
 const dataObj = JSON.parse(data);
 
@@ -43,13 +63,26 @@ const server = http.createServer((req, resp) => {
 
     const pathName = req.url;
 
+    // Overview Page
     if(pathName === '/' || pathName === '/overview') {
-        resp.end('This is the OVERVIEW');
+        resp.writeHead(200, {'Content-type': 'text/html'});
+
+        const cardsHtml = dataObj.map(el => replaceTemplate(tempCard, el)).join('');
+        //console.log(cardsHtml);
+        const output = tempOverview.replace('{%PRODUCT_CARDS%}', cardsHtml);
+        resp.end(output);
+    
+    // Product Page
     } else if (pathName === '/product') {
-        resp.end('This is the PRODUCT');
+        resp.writeHead(200, {'Content-type': 'text/html'});
+        resp.end(tempProduct);
+    
+    // API
     } else if (pathName === '/api') {
          resp.writeHead(200, {'Content-type': 'application/json'});
          resp.end(data);
+    
+    // Not Found
     } else {
         // When we redirect to an unknown
         resp.writeHead(404, {
