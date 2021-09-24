@@ -117,3 +117,45 @@ Prevent Callback Hell
 See [Node Knowledge: What are callbacks?](https://nodejs.org/en/knowledge/getting-started/control-flow/what-are-callbacks/)
 
 using [Arrow Function Expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) () => {}
+
+
+### 2.18 Introduction to NPM and the package.json File
+
+Created a package.json for the 'test' website project called node-farm
+```
+npm init
+```
+Then follow the wizard to complete.
+
+### 2.19 Types of Packages and Installs
+
+Install `slugify` as a **regular dependency** locally to the project
+```npm
+npm install slugify
+```
+
+Install `nodemon` as a **dev dependency** locally to the project
+```
+npm install nodemon --save-dev
+```
+This package watches and restarts the node server when changes are saved to the working directory of the node code
+under construction.
+
+Install `nodemon` globally 
+```
+npm install nodemon --global
+```
+
+Using `nodemon` (in our example) globally
+``` 
+nodemon index.js
+```
+
+To use the local dependency of `nodemon` within our node project update the ***package.json*** file's scripts object
+to include something like
+```
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
+  },
+```
