@@ -11,15 +11,23 @@ sudo apt-get install -y nodejs
      sudo apt-get install gcc g++ make
 
 ## To install the Yarn package manager, run
-
-     curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null
-     echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-     sudo apt-get update && sudo apt-get install yarn
+```
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null
+echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn
+```
 
 # Important Links Used During This Course
 
 1. Use this [Markdown Guide](https://www.markdownguide.org/basic-syntax/) for creating this style guide
 2. The official [Node.js v14.x Documentation](https://nodejs.org/dist/latest-v14.x/docs/api/)
+
+# VSCODE EXTENSIONS USED
+1. Prettier - Code formatter
+2. Pug beautify
+3. TabNine
+4. TODO Highlight
+5. Theme - Oceanic Next
 
 # Complete Node Bootcamp Course Notes
 
