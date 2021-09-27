@@ -102,4 +102,43 @@ Don't block the event loop by:
 - Be careful with JSON in large objects
 - Don't use too complex regular expressions ( i.e. nested quantifiers)
 
-##
+## The Event-Driven Architecture
+
+Implementation of the Observer Pattern of JS
+
+## Introduction to Streams
+
+Streams - used to process(read and write) data piece by piece (chunks), w/o completing the whole read or write operation,
+allowing for not keeping all the data in memory
+
+- perfect for handling large volumes of data, for example videos
+- more effcient data processing in terms of memory (no need to kepp all data in memory) and time (we don't have to wait until all the data is available)
+
+Types of streams
+
+- Readable Streams - streams from which we can read (consume) data
+  - examples
+    - http requests ( data events)
+    - fs read streams ( end events)
+  - important events
+    - data
+    - end
+  - important functions
+    - pipe()
+    - read()
+- Writable Streams - streams to which we can write data
+  - examples
+    - http response
+    - fs write streams
+  - important events
+    - drain
+    - finish
+  - important functions
+    - write()
+    - end()
+- Duplex Streams - streams that are both readable and writable
+  - examples
+    - net web socket
+- Transform Streams - Duplex streams that transform data as it is written or read
+  - examples
+    - zlib Gzip creation
