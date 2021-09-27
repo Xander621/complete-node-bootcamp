@@ -35,7 +35,7 @@ Thread Pool is designed to do the heavy lifting for a node application outstide 
 ## The Node.js Event Loop
 
 |--------------------------------------------------------------------|
-| NODE.JS PROCESS                                                    |
+|                           NODE.JS PROCESS                          |
 |--------------------------------------------------------------------|
 |                                                                    |
 |   |-------------------------------|                                |
@@ -47,7 +47,7 @@ Thread Pool is designed to do the heavy lifting for a node application outstide 
 |   |   |-----------------------|   |   |-----------| |-----------|  |
 |   |   |                       |   |   | THREAD #1 | | THREAD #2 |  |
 |   |   |                       |   |   |-----------| |-----------|  |
-|   |   |                       |   |   |                            |
+|   |   |                       |   |                                |
 |   |   |                       |   |   |-----------| |-----------|  |
 |   |   |                       |   |   | THREAD #3 | | THREAD #4 |  |
 |   |   |                       |   |   |-----------| |-----------|  |
